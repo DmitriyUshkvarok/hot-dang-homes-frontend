@@ -6,6 +6,7 @@ import { cleanAndTransformBlocks } from '@/utils/cleanAndTransformBlocks';
 
 interface PageProps {
   params: Promise<{ slug: string[] }>;
+  // params: { slug: string[] };
 }
 
 const GET_PAGE_BY_URI = gql`
@@ -67,7 +68,9 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const { slug } = await params;
+  // const { slug } = await params;
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
   const uri = `/${slug.join('/')}/`;
 
   const client = getClient();
@@ -85,7 +88,9 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function Page({ params }: PageProps) {
-  const { slug } = await params;
+  // const { slug } = await params;
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
   const uri = `/${slug.join('/')}/`;
 
   const client = getClient();
