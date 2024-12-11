@@ -5,8 +5,8 @@ import { BlockRenderer } from '@/components/BlockRender/BlockRender';
 import { cleanAndTransformBlocks } from '@/utils/cleanAndTransformBlocks';
 
 interface PageProps {
-  params: Promise<{ slug: string[] }>;
-  // params: { slug: string[] };
+  // params: Promise<{ slug: string[] }>;
+  params: { slug: string[] };
 }
 
 const GET_PAGE_BY_URI = gql`
