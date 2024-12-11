@@ -69,8 +69,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps) {
   // const { slug } = await params;
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+  const slug = (await params).slug;
   const uri = `/${slug.join('/')}/`;
 
   const client = getClient();
@@ -89,8 +88,7 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function Page({ params }: PageProps) {
   // const { slug } = await params;
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+  const slug = (await params).slug;
   const uri = `/${slug.join('/')}/`;
 
   const client = getClient();
