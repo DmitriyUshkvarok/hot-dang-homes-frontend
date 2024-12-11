@@ -4,10 +4,10 @@ import { notFound } from 'next/navigation';
 import { BlockRenderer } from '@/components/BlockRender/BlockRender';
 import { cleanAndTransformBlocks } from '@/utils/cleanAndTransformBlocks';
 
-interface PageProps {
+type PageProps = {
   params: Promise<{ slug: string[] }>;
   // params: { slug: string[] };
-}
+};
 
 const GET_PAGE_BY_URI = gql`
   query GetPageByUri($uri: String!) {
