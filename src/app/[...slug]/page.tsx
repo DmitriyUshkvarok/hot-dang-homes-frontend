@@ -5,7 +5,7 @@ import { BlockRenderer } from '@/components/BlockRender/BlockRender';
 import { cleanAndTransformBlocks } from '@/utils/cleanAndTransformBlocks';
 
 interface PageProps {
-  params: { slug: string[] };
+  params: Promise<{ slug: string[] }>;
 }
 
 const GET_PAGE_BY_URI = gql`
@@ -61,7 +61,9 @@ export async function generateStaticParams() {
     })) || [];
 
   // Объединяем маршруты
-  return [...pageRoutes, ...propertyRoutes];
+  return [...pageRoutes, ...propertyRoutes].filter(
+    (route) => route.slug.length > 0
+  );
 }
 
 export async function generateMetadata({ params }: PageProps) {
@@ -75,7 +77,7 @@ export async function generateMetadata({ params }: PageProps) {
   });
 
   const seo = data?.pageBy?.seo || data?.propertyBy?.seo;
-  console.log(seo);
+
   return {
     title: seo?.title || 'Default Title',
     description: seo?.metaDesc || 'Default description',
@@ -96,11 +98,9 @@ export default async function Page({ params }: PageProps) {
     notFound();
   }
   const blocksWithIds = cleanAndTransformBlocks(data.pageBy.blocks || []);
-  console.log('blocksWithIds', blocksWithIds);
 
   return (
     <div>
-      <h1>{data.pageBy.title}</h1>
       <BlockRenderer blocks={blocksWithIds} />
     </div>
   );

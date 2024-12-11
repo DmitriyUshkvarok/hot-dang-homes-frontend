@@ -28,7 +28,6 @@ async function fetchHomeData() {
 export async function generateMetadata() {
   const pageData = await fetchHomeData();
   const seo = pageData.seo || {};
-  console.log('seo', seo);
 
   return {
     title: seo.title || 'Default Title',
@@ -40,7 +39,6 @@ export default async function Home() {
   const pageData = await fetchHomeData();
   const blocks = pageData.blocks || [];
   const blocksWithIds = cleanAndTransformBlocks(blocks);
-  console.log('blocksWithIds', blocksWithIds);
 
   return (
     <div>
