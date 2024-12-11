@@ -4,10 +4,10 @@ import { notFound } from 'next/navigation';
 import { BlockRenderer } from '@/components/BlockRender/BlockRender';
 import { cleanAndTransformBlocks } from '@/utils/cleanAndTransformBlocks';
 
-type PageProps = {
-  // params: Promise<{ slug: string[] }>;
-  params: { slug: string[] };
-};
+interface PageProps {
+  params: Promise<{ slug: string[] }>;
+  // params: { slug: string[] };
+}
 
 const GET_PAGE_BY_URI = gql`
   query GetPageByUri($uri: String!) {
@@ -68,8 +68,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const { slug } = params;
-  // const slug = (await params).slug;
+  // const { slug } = await params;
+  const slug = (await params).slug;
   const uri = `/${slug.join('/')}/`;
 
   const client = getClient();
@@ -87,8 +87,8 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function Page({ params }: PageProps) {
-  const { slug } = params;
-  // const slug = (await params).slug;
+  // const { slug } = await params;
+  const slug = (await params).slug;
   const uri = `/${slug.join('/')}/`;
 
   const client = getClient();
