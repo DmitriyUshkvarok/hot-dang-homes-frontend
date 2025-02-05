@@ -3,6 +3,7 @@ import ApolloProviderWrapper from '@/providers/ApolloProvider';
 import Header from '@/components/Header/Header';
 import './globals.css';
 import { Poppins, Aboreto } from 'next/font/google';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -36,8 +37,9 @@ export default function RootLayout({
       <body>
         <ApolloProviderWrapper>
           <Header />
-          {children}
+          <main className="pt-[60px]">{children}</main>
         </ApolloProviderWrapper>
+        <Script src="/parallax.js" strategy="afterInteractive" />
       </body>
     </html>
   );

@@ -48,7 +48,7 @@ export const Filters = ({ onSearch }: FilterProps) => {
   }, []);
 
   return (
-    <div className="max-w-5xl mx-auto my-5 flex gap-5 border-solid border-slate-400 border-2 p-5 rounded-md">
+    <div className="max-w-5xl mx-auto my-10 flex gap-5 border-solid border-slate-400 border-2 p-5 rounded-md">
       <div className="flex-1">
         <div>
           <label className="cursor-pointer">

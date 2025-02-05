@@ -41,7 +41,7 @@ export const Gallery = ({ columns = 3, cropImages, items }: GalleryProps) => {
         <div
           key={item.id}
           style={{ width: `${columnWidth}%` }}
-          className="p-5 flex-grow relative"
+          className="p-5 flex-grow relative magic-list__item"
         >
           <Image
             src={item.attributes.url}
